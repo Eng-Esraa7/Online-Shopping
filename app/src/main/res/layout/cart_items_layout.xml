@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="338dp"
+    android:layout_height="157dp"
+    android:layout_margin="10dp"
+    android:elevation="20dp"
+    app:cardCornerRadius="30dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.1"
+    app:layout_constraintStart_toStartOf="parent"
+
+    app:layout_constraintTop_toTopOf="parent">
+
+    <ImageButton
+        android:id="@+id/remove"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/cart_product_price"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="95dp"
+        android:layout_toEndOf="@+id/cart_product_name"
+        android:backgroundTint="@color/colorAbnb4"
+        android:outlineAmbientShadowColor="@android:color/black"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
+
+    <ImageView
+        android:id="@+id/imgCart"
+        android:layout_width="114dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="10dp"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/cart_product_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="20dp"
+        android:text="Product Name"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cart_product_quantity"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cart_product_name"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="60dp"
+        android:text="Product Quantity"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/cart_product_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cart_product_quantity"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="100dp"
+        android:text="Product Price"
+        android:textColor="@android:color/black"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/Buy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cart_product_price"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="110dp"
+        android:layout_toEndOf="@+id/Edit"
+        android:backgroundTint="@color/colorAbnb3"
+        android:text="Buy"
+        android:textColor="@android:color/black" />
+
+    <ImageButton
+        android:id="@+id/Edit"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/cart_product_price"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="280dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/cart_product_name"
+        android:backgroundTint="@color/colorAbnb4"
+        android:outlineAmbientShadowColor="@android:color/black"
+        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+    <EditText
+        android:id="@+id/num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="260dp"
+        android:layout_marginTop="55dp"
+        android:layout_toEndOf="@+id/cart_product_name"
+        android:inputType="number"
+        android:text="0"
+        android:visibility="visible" />
+</androidx.cardview.widget.CardView>
