@@ -18,8 +18,8 @@ public class adapter extends RecyclerView.Adapter<adapter.ProductsViewHolder> {
     Context context;
     String userid;
     private List<product> productList = new ArrayList<>();
-
-    public adapter(Context context,String userid) {
+//Adapter of display product
+    public adapter(Context context,String userid) {//get user id to sent in details activity
         this.userid=userid;
         this.context = context;
     }
@@ -61,8 +61,8 @@ public class adapter extends RecyclerView.Adapter<adapter.ProductsViewHolder> {
                     int position = getAdapterPosition();
                     product item = productList.get(position);
                     Intent intent = new Intent(context, home.class);//desc
-                    intent.putExtra("id", item.getId());
-                    intent.putExtra("userid",userid);
+                    intent.putExtra("id", item.getId());//sent to desc product id
+                    intent.putExtra("userid",userid);//sent to desc user id
                     context.startActivity(intent);
                 }
             });

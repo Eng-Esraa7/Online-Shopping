@@ -13,7 +13,6 @@ import java.util.ArrayList;
 
 public class CategoryHelper extends SQLiteOpenHelper{
     private static String name="CategoryDatabase";
-    SQLiteDatabase Database;
     Context context;
     private ByteArrayOutputStream objByteArrayOutputStream;
     private byte[] ImgInByte;
@@ -50,13 +49,13 @@ public class CategoryHelper extends SQLiteOpenHelper{
 
             long check = objSqLiteDatabase.insert("Category",null,objContentValues);
             if(check!=-1){
-                Toast.makeText(context, "added", Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, "added", Toast.LENGTH_LONG).show();
             }else{
-
+                Toast.makeText(context, "not added", Toast.LENGTH_LONG).show();
             }
             objSqLiteDatabase.close();
         }catch (Exception e){
-           // Toast.makeText(context, e.getMessage()+"add", Toast.LENGTH_LONG).show();
+           Toast.makeText(context, e.getMessage()+"add", Toast.LENGTH_LONG).show();
         }
     }
 

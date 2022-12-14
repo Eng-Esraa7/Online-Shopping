@@ -15,10 +15,8 @@ import java.util.List;
 
 public class OrderDetailsHelper extends SQLiteOpenHelper {
     private static String name="OrderDetails";
-    SQLiteDatabase Database;
     Context context;
     private ByteArrayOutputStream objByteArrayOutputStream;
-    //private byte[] ImgInByte;
 
     public OrderDetailsHelper(@androidx.annotation.Nullable android.content.Context context) {
         super(context, name, null, 1);
@@ -27,7 +25,7 @@ public class OrderDetailsHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table OrderDetails(ordId integer primary key autoincrement,proId integer ,quantity integer,userId text,FOREIGN key(proId) references Product(prouductId))");
+        db.execSQL("create table OrderDetails(ordId integer primary key autoincrement,proId integer ,quantity integer,userId text,finish integer,FOREIGN key(proId) references Product(prouductId))");
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -43,14 +41,15 @@ public class OrderDetailsHelper extends SQLiteOpenHelper {
             objContentValues.put("quantity",o.getQuantity());
             objContentValues.put("proId",o.getProid());
             objContentValues.put("userId",o.getUserId());
+            objContentValues.put("finish",0);//default 0 not buy
 
             long check = objSqLiteDatabase.insert("OrderDetails",null,objContentValues);
             if(check!=-1){
-                Toast.makeText(context, "added", Toast.LENGTH_LONG).show();
+                //Toast.makeText(context, "added", Toast.LENGTH_LONG).show();
             }
             objSqLiteDatabase.close();
         }catch (Exception e){
-            Toast.makeText(context, e.getMessage()+"add", Toast.LENGTH_LONG).show();
+            //Toast.makeText(context, e.getMessage()+"add", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -66,7 +65,7 @@ public class OrderDetailsHelper extends SQLiteOpenHelper {
                 o.setProid(cursor.getInt(1));
                 o.setQuantity(cursor.getInt(2));
                 o.setUserId(cursor.getString(3));
-
+                o.setFinish(cursor.getInt(4));
                 orders.add(o);
                 return orders;
             }
@@ -76,11 +75,11 @@ public class OrderDetailsHelper extends SQLiteOpenHelper {
         return null;
     }
 
-    public ArrayList<OrdDetails> getOrderByUser(String userId){
+    public ArrayList<OrdDetails> getOrderByUser(String userId,String finish){
         OrdDetails o;
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
         ArrayList<OrdDetails> orders = new ArrayList<>();
-        Cursor cursor=sqLiteDatabase.rawQuery("select * from OrderDetails where userId like ?",new String[]{userId});
+        Cursor cursor=sqLiteDatabase.rawQuery("select * from OrderDetails where userId=? and finish=?",new String[]{userId,finish});
         try {
             while (cursor.moveToNext()){
                 o=new OrdDetails();
@@ -88,6 +87,7 @@ public class OrderDetailsHelper extends SQLiteOpenHelper {
                 o.setProid(cursor.getInt(1));
                 o.setQuantity(cursor.getInt(2));
                 o.setUserId(cursor.getString(3));
+                o.setFinish(cursor.getInt(4));
                 orders.add(o);
             }
         }catch (Exception e){
@@ -103,22 +103,23 @@ public class OrderDetailsHelper extends SQLiteOpenHelper {
         sqLiteDatabase.close();
     }
 
-    public void updateCart(String orderId,String quantity){
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        ContentValues row = new ContentValues();
-        row.put("quantity",quantity);
-        sqLiteDatabase.update("OrderDetails",row,"ordId like ?",new String[]{orderId});
-        sqLiteDatabase.close();
-    }
-
-    public float totalPrice(List<OrdDetails> orders){
+    public float totalPrice(List<OrdDetails> orders){//total in cart
         float Totalprice=0;
         ProductHelper productHelper=new ProductHelper(context);
         product p;
         for (int i=0;i<orders.size();i++){
             p=productHelper.getProduct(String.valueOf(orders.get(i).getProid()));
-            Totalprice+=Float.valueOf(p.getPrice())*orders.get(i).getQuantity();
+            Totalprice+=Float.valueOf(p.getPrice())*orders.get(i).getQuantity();//price of product*quantity pf order
         }
         return  Totalprice;
+    }
+
+    //finish (buy)
+    public void SetFinish(String userId,String OrderId){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put("finish",1);
+        sqLiteDatabase.update("OrderDetails",row,"ordId =? and userId=?",new String[]{OrderId,userId});
+        sqLiteDatabase.close();
     }
 }

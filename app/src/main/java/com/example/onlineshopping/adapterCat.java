@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,11 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class adapterCat extends RecyclerView.Adapter<adapterCat.ViewHolder> {
+    //adapter of category
     Context context;
     String userid;
     private List<Category> CatList = new ArrayList<>();
 
-    public adapterCat(Context context,String userid)
+    public adapterCat(Context context,String userid)//get user id
     {
         this.userid=userid;
         this.context = context;
@@ -61,10 +61,10 @@ public class adapterCat extends RecyclerView.Adapter<adapterCat.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    Intent intent = new Intent(context, GirlsActivity.class);
+                    Intent intent = new Intent(context, ProductsActivity.class);
                     Category item = CatList.get(position);
-                    intent.putExtra("id", item.getId());
-                    intent.putExtra("userid",userid);
+                    intent.putExtra("id", item.getId());//sent to products(category id)
+                    intent.putExtra("userid",userid);//sent to products userId
                     context.startActivity(intent);
                 }
             });

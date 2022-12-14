@@ -14,25 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.Collection;
 
 public class Login extends AppCompatActivity {
     FirebaseFirestore reference;
@@ -84,7 +72,7 @@ public class Login extends AppCompatActivity {
                                                     User user;
                                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                                         user = new User(documentSnapshot.getString("fristName"), documentSnapshot.getString("lastName"), documentSnapshot.getString("email"), documentSnapshot.getString("gender"), documentSnapshot.getString("birthday"), documentSnapshot.getString("job"),documentSnapshot.getString("User UID"));
-                                                        Intent i = new Intent(Login.this, ProductsActivity.class);
+                                                        Intent i = new Intent(Login.this, CategoriesActivity.class);
                                                         i.putExtra("Name", user.getFristName() + " " + user.getLastName());
                                                         i.putExtra("userid",user.getEmail());
 

@@ -5,21 +5,25 @@ public class OrdDetails {
     private int proid;
     private  int quantity;
     private String UserId;
+    private int finish;
 
 
     public OrdDetails() {
     }
 
-    public OrdDetails(int ordid, int proid, int quantity) {
-        this.ordid = ordid;
-        this.proid = proid;
-        this.quantity = quantity;
-    }
 
     public OrdDetails(int proid,int quantity,String UserId) {
         this.proid = proid;
         this.quantity = quantity;
         this.UserId=UserId;
+    }
+
+    public int getFinish() {
+        return finish;
+    }
+
+    public void setFinish(int finish) {
+        this.finish = finish;
     }
 
     public String getUserId() {

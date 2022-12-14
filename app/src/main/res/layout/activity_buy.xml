@@ -34,10 +34,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/line1_confirm_final_order_activity"
-        android:hint="Your Name"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
+        android:hint="Your Name"
         android:textStyle="bold"></EditText>
 
     <EditText
@@ -45,9 +45,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/shippment_userName"
-        android:hint="Phone Number"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:hint="Phone Number"
         android:inputType="number"
         android:textStyle="bold"></EditText>
 
@@ -62,13 +62,13 @@
         android:textStyle="bold"></EditText>
 
     <EditText
-        android:id="@+id/shippment_userCity"
+        android:id="@+id/shippment_userdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/shippment_userHomeAddress"
-        android:hint="Date"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:hint="Date"
         android:textStyle="bold"></EditText>
 
 
@@ -77,10 +77,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="20dp"
-        android:text="Confirm"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:backgroundTint="@color/black"
+        android:text="Confirm"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
-        />
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="200dp"
+        android:text="Button" />
+
 </RelativeLayout>

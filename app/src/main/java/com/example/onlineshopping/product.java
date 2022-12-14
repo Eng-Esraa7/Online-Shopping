@@ -11,16 +11,6 @@ public class product {
     private int catId;
     private String description;
 
-    public product(int id, String name, String price, String quantity, Bitmap image, int catId,String description) {
-        this.id = id;
-        Name = name;
-        Price = price;
-        Quantity = quantity;
-        Image = image;
-        this.catId = catId;
-        this.description=description;
-    }
-
     public product(String name, String price, String quantity, Bitmap image, int catId,String description) {
         Name = name;
         Price = price;

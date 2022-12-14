@@ -5,24 +5,45 @@ import android.graphics.Bitmap;
 public class Orders {
     private int id;
     private String orderDate;
+    private String name;
+    private String phone;
     private String address;
-    private int userid;
+    private int ordDetailsId;
 
     public Orders() {
     }
 
-    public Orders(int id, String orderDate, String address, int userid) {
-        this.id = id;
+    public Orders(String orderDate, String name, String phone, String address, int ordDetailsId) {
         this.orderDate = orderDate;
+        this.name = name;
+        this.phone = phone;
         this.address = address;
-        this.userid = userid;
+        this.ordDetailsId = ordDetailsId;
     }
 
-    public Orders(String orderDate, String address) {
-        this.orderDate = orderDate;
-        this.address = address;
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public int getOrdDetailsId() {
+        return ordDetailsId;
+    }
+
+    public void setOrdDetailsId(int ordDetailsId) {
+        this.ordDetailsId = ordDetailsId;
+    }
 
     public int getId() {
         return id;
@@ -48,11 +69,11 @@ public class Orders {
         this.address = address;
     }
 
-    public int getUserid() {
-        return userid;
+    public int getordDetailsId() {
+        return ordDetailsId;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setordDetailsId(int ordDetailsId) {
+        this.ordDetailsId = ordDetailsId;
     }
 }

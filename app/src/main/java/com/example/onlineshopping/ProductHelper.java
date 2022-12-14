@@ -85,7 +85,7 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
         }
         return products;
     }
-
+//get Product Of specific Category
     public ArrayList<product> getProductOfCat(String id){
         product p;
         SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
@@ -130,6 +130,14 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return p;
+    }
+
+    public void UpdateQuantity(String id,int newVal) {
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put("quantity",newVal);
+        sqLiteDatabase.update("Product",row,"prouductId=?",new String[]{id});
+        sqLiteDatabase.close();
     }
 
 
