@@ -30,3 +30,4 @@ public class myLocationListen implements LocationListener {
         Toast.makeText(activity,"GPS Disabled",Toast.LENGTH_LONG).show();
     }
 }
+

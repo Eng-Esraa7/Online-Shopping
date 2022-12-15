@@ -26,21 +26,12 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyCBGFWOGj4NvlekYhYU3v73dTb0gtguYUE" />
 
         <activity
-            android:name=".MapsActivity"
-            android:exported="true"
-            android:label="@string/title_activity_maps">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".MapppActivity"
-            android:exported="true" />
+            android:name=".MapsActivity2"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
         <activity
             android:name=".BuyActivity"
             android:exported="false" />

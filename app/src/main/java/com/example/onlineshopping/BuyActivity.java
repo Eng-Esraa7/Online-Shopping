@@ -81,8 +81,8 @@ public class BuyActivity extends AppCompatActivity {
     btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            //Toast.makeText(BuyActivity.this, "clicked", Toast.LENGTH_SHORT).show();
-            Intent i=new Intent(BuyActivity.this,MapppActivity.class);
+            Toast.makeText(BuyActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+            Intent i=new Intent(BuyActivity.this,MapsActivity2.class);
             startActivity(i);
         }
     });
