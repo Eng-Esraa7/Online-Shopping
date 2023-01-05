@@ -72,18 +72,32 @@ public class Login extends AppCompatActivity {
                                                     User user;
                                                     for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                                                         user = new User(documentSnapshot.getString("fristName"), documentSnapshot.getString("lastName"), documentSnapshot.getString("email"), documentSnapshot.getString("gender"), documentSnapshot.getString("birthday"), documentSnapshot.getString("job"),documentSnapshot.getString("User UID"));
-                                                        Intent i = new Intent(Login.this, CategoriesActivity.class);
-                                                        i.putExtra("Name", user.getFristName() + " " + user.getLastName());
-                                                        i.putExtra("userid",user.getEmail());
-
-                                                        startActivity(i);
+                                                        if(user.getJob().equals("Admin")) {// email:admin@gmail.com pass:732001
+                                                            Intent i = new Intent(Login.this, AdminCategoriesActivity.class);
+                                                            i.putExtra("Name", user.getFristName() + " " + user.getLastName());
+                                                            i.putExtra("userid", user.getEmail());
+                                                            startActivity(i);
+                                                            finish();
+                                                        }else{
+                                                            Intent i = new Intent(Login.this, CategoriesActivity.class);
+                                                            i.putExtra("Name", user.getFristName() + " " + user.getLastName());
+                                                            i.putExtra("userid", user.getEmail());
+                                                            startActivity(i);
+                                                            finish();
+                                                        }
                                                     }
                                                 }
                                             });
 
                                 }
 
-                            });
+                            }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.cancel();
+                            Toast.makeText(getApplicationContext(), "Email or password inCorrect", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         });
@@ -128,6 +142,7 @@ public class Login extends AppCompatActivity {
         public void onClick(View v) {
             Intent i=new Intent(getApplicationContext(),MainActivity.class);
             startActivity(i);
+            finish();
         }
     });
 

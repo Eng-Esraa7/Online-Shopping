@@ -8,17 +8,45 @@ public class Orders {
     private String name;
     private String phone;
     private String address;
+    private String Feedback;
+    private String Rating;
     private int ordDetailsId;
 
     public Orders() {
     }
 
-    public Orders(String orderDate, String name, String phone, String address, int ordDetailsId) {
+//    public Orders(String orderDate, String name, String phone, String address, int ordDetailsId) {
+//        this.orderDate = orderDate;
+//        this.name = name;
+//        this.phone = phone;
+//        this.address = address;
+//        this.ordDetailsId = ordDetailsId;
+//    }
+
+    public Orders(String orderDate, String name, String phone, String address,int ordDetailsId, String feedback, String rating) {
         this.orderDate = orderDate;
         this.name = name;
         this.phone = phone;
         this.address = address;
+        Feedback = feedback;
+        Rating = rating;
         this.ordDetailsId = ordDetailsId;
+    }
+
+    public String getFeedback() {
+        return Feedback;
+    }
+
+    public void setFeedback(String feedback) {
+        Feedback = feedback;
+    }
+
+    public String getRating() {
+        return Rating;
+    }
+
+    public void setRating(String rating) {
+        Rating = rating;
     }
 
     public String getName() {

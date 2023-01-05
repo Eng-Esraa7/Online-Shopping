@@ -51,7 +51,7 @@
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:background="#953832"
+        android:background="@drawable/buttons"
         android:text="Sign Up"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -115,15 +115,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
         android:layout_marginStart="114dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="103dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shoping" />
+        app:srcCompat="@drawable/shp6"
+        android:scaleType="centerCrop"/>
 
     <TextView
         android:id="@+id/toGologin"
@@ -132,7 +133,7 @@
         android:layout_marginTop="25dp"
         android:layout_marginBottom="89dp"
         android:text="Login"
-        android:textColor="@color/design_default_color_error"
+        android:textColor="#107dac"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

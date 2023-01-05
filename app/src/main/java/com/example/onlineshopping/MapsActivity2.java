@@ -4,6 +4,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -35,7 +36,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     LocationManager locationManager;
     LocationListener locationListener;
     Marker marker;
-    Button btn;
+    Button btn,back;
     EditText txt;
 
     @Override
@@ -44,6 +45,28 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_maps2);
         btn=(Button)findViewById(R.id.btnmap2);
         txt=(EditText)findViewById(R.id.txt2);
+        back = (Button)findViewById(R.id.back);
+        int prodId=getIntent().getIntExtra("prodId",0);
+        String userId=getIntent().getExtras().getString("userId");
+        int ordId=getIntent().getIntExtra("orderId",0);
+        int quantityOfOrder=getIntent().getIntExtra("quantityOfOrder",0);
+        //back
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(MapsActivity2.this,BuyActivity.class);
+                i.putExtra("prodId",prodId);
+                i.putExtra("userId",userId);
+                i.putExtra("orderId",ordId);
+                i.putExtra("quantityOfOrder",quantityOfOrder);
+                i.putExtra("name",getIntent().getExtras().getString("name"));
+                i.putExtra("phone",getIntent().getExtras().getString("phone"));
+                i.putExtra("address",txt.getText().toString());
+                startActivity(i);
+                finish();
+            }
+        });
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map2);

@@ -25,10 +25,10 @@ public class home extends AppCompatActivity {
         //object of data base to get product
         ProductHelper productHelper=new ProductHelper(getApplicationContext());
 
-        TextView Name = (TextView) findViewById(R.id.NameDesc);
-        TextView price = (TextView) findViewById(R.id.priceDesc);
-        TextView desc = (TextView) findViewById(R.id.Desc);
-        ImageView imageView = (ImageView)findViewById(R.id.imgDesc);
+        TextView Name = (TextView) findViewById(R.id.NameDesc1);
+        TextView price = (TextView) findViewById(R.id.priceDesc1);
+        TextView desc = (TextView) findViewById(R.id.Desc1);
+        ImageView imageView = (ImageView)findViewById(R.id.imgDesc1);
         Button addToCart = (Button)findViewById(R.id.totalPrice);
         Button plus = (Button)findViewById(R.id.p_btn);
         Button minus = (Button)findViewById(R.id.m_btn);
@@ -77,6 +77,7 @@ public class home extends AppCompatActivity {
                 Intent i=new Intent(getApplicationContext(),CartActivity.class);
                 i.putExtra("userid",userid);//sent user id
                 startActivity(i);
+                finish();
             }
         });
 

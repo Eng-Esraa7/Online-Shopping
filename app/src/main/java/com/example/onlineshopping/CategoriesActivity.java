@@ -1,13 +1,16 @@
 package com.example.onlineshopping;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,35 @@ public class CategoriesActivity extends AppCompatActivity {
     List<Category> CartList;
     adapterCat adapter;
     CategoryHelper categoryHelper;
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu1,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+
+            case R.id.home: Intent i = new Intent(CategoriesActivity.this, CategoriesActivity.class);
+                i.putExtra("Name", getIntent().getExtras().getString("Name") );
+                i.putExtra("userid",getIntent().getExtras().getString("userid"));
+                startActivity(i);
+                finish();
+                return true;
+            case R.id.Cart: Intent ii = new Intent(CategoriesActivity.this, CartActivity.class);
+                ii.putExtra("userid",getIntent().getExtras().getString("userid"));//sent user id
+                startActivity(ii);
+                return true;
+            case R.id.logout: Intent i2 = new Intent(CategoriesActivity.this, Login.class);
+                startActivity(i2);
+                finish();
+                return true;
+        }
+        return false;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,31 +81,34 @@ public class CategoriesActivity extends AppCompatActivity {
         RecyclerView.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView.setAdapter(adapter);
 
+//menu
 
     }
     public void data(){
         Bitmap[] images ={
-                BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.g1),
-                BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.p1),
-                BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ch1),
+                BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.dress_category),
+                BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.boys),
+                BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.girls),
+                BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.jb2),
         };
         String [] name={
-                "Girls",
-                "Boys",
-                "Children",
+                "Women",
+                "Boys Children",
+                "Girls Children",
+                "Men",
         };
         int [] id={
-                1,2,3
+                1,2,3,4
         };
 
-        for(int i=0;i<3;i++){
+        for(int i=0;i<4;i++){
             CartList.add(new Category(name[i],images[i]));
         }
 
     }
     public void storeCategory(){
         try {
-            for(int i=0;i<3;i++){
+            for(int i=0;i<4;i++){
                 categoryHelper.CreateData(CartList.get(i));
             }
         }catch (Exception e){

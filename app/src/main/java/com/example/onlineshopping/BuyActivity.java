@@ -10,10 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
 
 public class BuyActivity extends AppCompatActivity {
     TextView name,address,phone,date;
@@ -47,42 +44,61 @@ public class BuyActivity extends AppCompatActivity {
         String currentDate= DateFormat.getDateInstance().format(calendar.getTime());
         date.setText(currentDate);
 
-        //strings of data
-        String nametxt=name.getText().toString();
-        String phonetxt=phone.getText().toString();
-        String addresstxt=address.getText().toString();
+        //get from map intent
+        name.setText(getIntent().getExtras().getString("name",""));
+        phone.setText(getIntent().getExtras().getString("phone",""));
+        address.setText(getIntent().getExtras().getString("address",""));
+
 //click on confirm
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(nametxt==null||phonetxt==null||addresstxt==null){
+                String nametxt=name.getText().toString();
+                String phonetxt=phone.getText().toString();
+                String addresstxt=address.getText().toString();
+                if(nametxt.equals("")||phonetxt.equals("")||addresstxt.equals("")){
                     Toast.makeText(BuyActivity.this, "Please Enter All Data", Toast.LENGTH_SHORT).show();
-                }else {
-                    //create order
-                    Order = new Orders(currentDate, nametxt, phonetxt, addresstxt, ordId);
-                    orderHelper.CreateOrder(Order);
+                }else{
                     //minus quantity from product
-                    product p=new product();
+                    product p;
                     p=productHelper.getProduct(String.valueOf(prodId));
-                    int newVal=(Integer.parseInt(p.getQuantity()))-quantityOfOrder;
-                    productHelper.UpdateQuantity(String.valueOf(prodId),newVal);
-                    //delete from cart
-                    orderDetailsHelper.SetFinish(userId, String.valueOf(ordId));
-                    //go to cart
-                    Intent i=new Intent(BuyActivity.this,CartActivity.class);
-                    i.putExtra("userid",userId);
-                    startActivity(i);
+                    if(p.getQuantity().equals("0")){
+                        Toast.makeText(BuyActivity.this, "Not Available in Stoke", Toast.LENGTH_SHORT).show();
+                    }else {
+                        //create order
+                        Order = new Orders(currentDate, nametxt, phonetxt, addresstxt, ordId,"","");
+                        orderHelper.CreateOrder(Order);
+                        //
+                        int newVal = (Integer.parseInt(p.getQuantity())) - quantityOfOrder;
+                        productHelper.UpdateQuantity(String.valueOf(prodId), newVal);
+                        int NewvalCnt = Integer.parseInt(p.getCountSale())+quantityOfOrder;
+                        productHelper.UpdateCntSale(String.valueOf(prodId), NewvalCnt);
+                        //delete from cart
+                        orderDetailsHelper.SetFinish(userId, String.valueOf(ordId));
+                        //go to review
+                        Intent i = new Intent(BuyActivity.this, ReviewActivity.class);
+                        i.putExtra("ordDetailsId", ordId);
+                        i.putExtra("userid",userId);
+                        startActivity(i);
+                        finish();
+                    }
                 }
             }
         });
 
         //map
-    Button btn =(Button) findViewById(R.id.button2);
+    Button btn =(Button) findViewById(R.id.submit);
     btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Toast.makeText(BuyActivity.this, "clicked", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(BuyActivity.this, "clicked", Toast.LENGTH_SHORT).show();
             Intent i=new Intent(BuyActivity.this,MapsActivity2.class);
+            i.putExtra("prodId",prodId);
+            i.putExtra("name",name.getText().toString());
+            i.putExtra("phone",phone.getText().toString());
+            i.putExtra("userId",userId);
+            i.putExtra("orderId",ordId);
+            i.putExtra("quantityOfOrder",quantityOfOrder);
             startActivity(i);
         }
     });

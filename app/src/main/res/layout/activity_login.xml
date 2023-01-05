@@ -8,15 +8,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="130dp"
-        android:layout_marginStart="114dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="103dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/shoping" />
+        app:srcCompat="@drawable/shp3" />
 
     <EditText
         android:id="@+id/Email"
@@ -52,7 +51,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="43dp"
         android:layout_marginBottom="168dp"
-        android:background="#953832"
+        android:background="@drawable/buttons"
         android:text="Login"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -71,7 +70,7 @@
         android:layout_marginBottom="89dp"
         android:gravity="center"
         android:text="forget password"
-        android:textColor="#953832"
+        android:textColor="#107dac"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,7 +86,7 @@
         android:foregroundGravity="center"
         android:gravity="center"
         android:text="Register"
-        android:textColor="#953832"
+        android:textColor="#107dac"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/forgetPassword"
         app:layout_constraintHorizontal_bias="1.0"
@@ -102,7 +101,7 @@
         android:layout_marginTop="19dp"
         android:layout_marginEnd="176dp"
         android:text="Remember me"
-        android:textColor="#953832"
+        android:textColor="#107dac"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />

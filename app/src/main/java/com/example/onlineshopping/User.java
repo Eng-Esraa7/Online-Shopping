@@ -13,7 +13,7 @@ public class User {
       this.Birthday=Birthday;
       this.Job=Job;
     }
-    public User(String fristName,String LastName,String Email,String Password,String Gender,String Birthday,String Job){
+    public User(String fristName,String LastName,String Email,String Gender,String Birthday,String Job,String user_id){
         this.fristName=fristName;
         this.LastName=LastName;
         this.Email=Email;
@@ -21,14 +21,7 @@ public class User {
         this.Gender=Gender;
         this.Birthday=Birthday;
         this.Job=Job;
-    }
-    public User(String fristName,String LastName,String Email,String Gender,String Birthday,String Job){
-        this.fristName=fristName;
-        this.LastName=LastName;
-        this.Email=Email;
-        this.Gender=Gender;
-        this.Birthday=Birthday;
-        this.Job=Job;
+        this.user_id=user_id;
     }
     public User(){}
 

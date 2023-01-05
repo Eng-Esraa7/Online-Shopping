@@ -79,5 +79,46 @@ public class CategoryHelper extends SQLiteOpenHelper{
         return categories;
     }
 
+    public Category getCategory(String id){
+        Category p=null;
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        Cursor cursor=sqLiteDatabase.rawQuery("select * from Category where cat_Id like ?",new String[]{id});
+        try {
+            while (cursor.moveToNext()){
+                p=new Category();
+                p.setId(cursor.getInt(0));
+                byte[] img = cursor.getBlob(2);
+                p.setImg(BitmapFactory.decodeByteArray(img,0,img.length));
+                p.setName(cursor.getString(1));
+
+            }
+        }catch (Exception e){
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return p;
+    }
+
+    public void deletefromCategory(String Id){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        sqLiteDatabase.delete("Category","cat_Id like ?",new String[]{Id});
+        sqLiteDatabase.close();
+    }
+
+    public void UpdateCategory(String Id,String name,Bitmap image){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+
+
+        Bitmap imagetoStore=image;
+        objByteArrayOutputStream=new ByteArrayOutputStream();
+        imagetoStore.compress(Bitmap.CompressFormat.JPEG,100,objByteArrayOutputStream);
+        ImgInByte=objByteArrayOutputStream.toByteArray();
+        c.put("name",name);
+        c.put("image",ImgInByte);
+
+        sqLiteDatabase.update("Category", c, "cat_Id like ?", new String[]{Id});
+        sqLiteDatabase.close();
+    }
+
 
 }

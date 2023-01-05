@@ -6,10 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -85,13 +83,13 @@ public class adapterCart extends RecyclerView.Adapter<adapterCart.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView,OnItemClickListener listener,OnItemClickListener2 listener2) {
             super(itemView);
-            Name = itemView.findViewById(R.id.cart_product_name);
+            Name = itemView.findViewById(R.id.Name_cat_admin);
             Price = itemView.findViewById(R.id.cart_product_price);
             quantity=itemView.findViewById(R.id.cart_product_quantity);
-            img=itemView.findViewById(R.id.imgCart);
+            img=itemView.findViewById(R.id.imgCatAdmin);
 
-            del = (ImageView) itemView.findViewById(R.id.remove);
-            edit = (ImageView) itemView.findViewById(R.id.Edit);
+            del = (ImageView) itemView.findViewById(R.id.delAdmin);
+            edit = (ImageView) itemView.findViewById(R.id.EditAdmin);
             buy = (Button) itemView.findViewById(R.id.Buy);
             //click on buy
             buy.setOnClickListener(new View.OnClickListener() {

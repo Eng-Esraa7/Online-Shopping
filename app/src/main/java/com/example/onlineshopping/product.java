@@ -1,5 +1,4 @@
 package com.example.onlineshopping;
-
 import android.graphics.Bitmap;
 
 public class product {
@@ -10,14 +9,23 @@ public class product {
     private Bitmap Image;
     private int catId;
     private String description;
-
-    public product(String name, String price, String quantity, Bitmap image, int catId,String description) {
+    private String countSale="0";
+    public product(String name, String price, String quantity, Bitmap image, int catId, String description) {
         Name = name;
         Price = price;
         Quantity = quantity;
         Image = image;
         this.catId = catId;
         this.description=description;
+    }
+    public product(String name, String price, String quantity, Bitmap image, int catId, String description, String countSale) {
+        Name = name;
+        Price = price;
+        Quantity = quantity;
+        Image = image;
+        this.catId = catId;
+        this.description=description;
+        this.countSale=countSale;
     }
     public product() {
     }
@@ -76,5 +84,13 @@ public class product {
 
     public void setQuantity(String quantity) {
         Quantity = quantity;
+    }
+
+    public String getCountSale() {
+        return countSale;
+    }
+
+    public void setCountSale(String countSale) {
+        this.countSale = countSale;
     }
 }

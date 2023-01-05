@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,16 +34,20 @@ public class adapter extends RecyclerView.Adapter<adapter.ProductsViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ProductsViewHolder holder, int position) {
         holder.Name.setText(productList.get(position).getName());
-        holder.Price.setText(productList.get(position).getPrice());
+        holder.Price.setText("price: "+productList.get(position).getPrice());
         holder.img.setImageBitmap(productList.get(position).getImage());
     }
-
     @Override
     public int getItemCount() {
         return productList.size();
     }
 
-    public void setList(List<product> productList) {
+    public List<product> setList(List<product> productList) {
+        this.productList = productList;
+        notifyDataSetChanged();
+        return productList;
+    }
+    public void setfilterproducts(ArrayList<product> productList) {
         this.productList = productList;
         notifyDataSetChanged();
     }
@@ -55,17 +60,31 @@ public class adapter extends RecyclerView.Adapter<adapter.ProductsViewHolder> {
             Name = itemView.findViewById(R.id.Name_cat);
             Price = itemView.findViewById(R.id.price_product);
             img=itemView.findViewById(R.id.imgCat);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    product item = productList.get(position);
-                    Intent intent = new Intent(context, home.class);//desc
-                    intent.putExtra("id", item.getId());//sent to desc product id
-                    intent.putExtra("userid",userid);//sent to desc user id
-                    context.startActivity(intent);
-                }
-            });
+            //admin
+            if (userid.equals("")) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        product item = productList.get(position);
+                        Intent intent = new Intent(context, AdminMaintainProductsActivity.class);
+                        intent.putExtra("idProduct", item.getId());//sent to desc product id
+                        context.startActivity(intent);
+                    }
+                });
+            }else {//user
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        product item = productList.get(position);
+                        Intent intent = new Intent(context, home.class);//desc
+                        intent.putExtra("id", item.getId());//sent to desc product id
+                        intent.putExtra("userid", userid);//sent to desc user id
+                        context.startActivity(intent);
+                    }
+                });
+            }
         }
     }
 }

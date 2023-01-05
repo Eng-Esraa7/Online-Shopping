@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
              public void onClick(View view) {
                  Intent login=new Intent(MainActivity.this,Login.class);
                  startActivity(login);
+                 finish();
              }
          });
     }
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "SignUp Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent=new Intent(MainActivity.this,Login.class);
                            startActivity(intent);
+                        finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -125,32 +127,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-/**
-    public void saveData(String fristName,String lastName,String Email,String Password,String Gender,String Birthday,String Job){
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Database").child("users");
-        Query query=reference.orderByChild("email").equalTo(Email); //to order email and search for specific email
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(!snapshot.exists()){
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Database").child("users");
-                    String userId = ref.push().getKey();
-                    User newUser = new User(userId, fristName, lastName, Email, Password, Gender, Birthday,Job);
-                    ref.push().setValue(newUser);
-                    Intent login=new Intent(MainActivity.this,Login.class);
-                    startActivity(login);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Email is aready exist", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-
-        });
-    }
-**/
  }

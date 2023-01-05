@@ -23,7 +23,7 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
 
      @Override
     public void onCreate(android.database.sqlite.SQLiteDatabase db) {
-         db.execSQL("create table Product(prouductId integer primary key autoincrement,image Blob,name text,price float,quantity integer,descriotion String,cat_Id integer,FOREIGN key(cat_Id) references Category(cat_Id))");
+         db.execSQL("create table Product(prouductId integer primary key autoincrement,image Blob,name text,price float,quantity integer,descriotion String,countSaled integer,cat_Id integer,FOREIGN key(cat_Id) references Category(cat_Id))");
         }
         @Override
     public void onUpgrade(android.database.sqlite.SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -48,6 +48,7 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
             objContentValues.put("quantity",p.getQuantity());
             objContentValues.put("cat_Id",p.getCatId());
             objContentValues.put("descriotion",p.getDescription());
+            objContentValues.put("countSaled",p.getCountSale());
 
             long check = objSqLiteDatabase.insert("Product",null,objContentValues);
             if(check!=-1){
@@ -77,7 +78,8 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
                 p.setPrice(cursor.getString(3));
                 p.setQuantity(cursor.getString(4));
                 p.setDescription(cursor.getString(5));
-                p.setCatId(cursor.getInt(6));
+                p.setCountSale(cursor.getString(6));
+                p.setCatId(cursor.getInt(7));
                 products.add(p);
             }
         }catch (Exception e){
@@ -101,7 +103,9 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
                 p.setName(cursor.getString(2));
                 p.setPrice(cursor.getString(3));
                 p.setQuantity(cursor.getString(4));
-                p.setCatId(cursor.getInt(5));
+                p.setDescription(cursor.getString(5));
+                p.setCountSale(cursor.getString(6));
+                p.setCatId(cursor.getInt(7));
                 products.add(p);
             }
         }catch (Exception e){
@@ -124,13 +128,40 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
                 p.setPrice(cursor.getString(3));
                 p.setQuantity(cursor.getString(4));
                 p.setDescription(cursor.getString(5));
-                p.setCatId(cursor.getInt(6));
+                p.setCountSale(cursor.getString(6));
+                p.setCatId(cursor.getInt(7));
             }
         }catch (Exception e){
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         return p;
     }
+    public ArrayList<product> getAllProducOfCategorytHasQuantity(String idCategory){
+        product p;
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        ArrayList<product> products = new ArrayList<>();
+        Cursor cursor=sqLiteDatabase.rawQuery("select * from Product where cat_Id =? and quantity!=?",new String[]{idCategory,"0"});
+        try {
+
+            while (cursor.moveToNext()){
+                p=new product();
+                p.setId(cursor.getInt(0));
+                byte[] img = cursor.getBlob(1);
+                p.setImage(BitmapFactory.decodeByteArray(img,0,img.length));
+                p.setName(cursor.getString(2));
+                p.setPrice(cursor.getString(3));
+                p.setQuantity(cursor.getString(4));
+                p.setDescription(cursor.getString(5));
+                p.setCountSale(cursor.getString(6));
+                p.setCatId(cursor.getInt(7));
+                products.add(p);
+            }
+        }catch (Exception e){
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return products;
+    }
+
 
     public void UpdateQuantity(String id,int newVal) {
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
@@ -140,5 +171,36 @@ public class ProductHelper extends android.database.sqlite.SQLiteOpenHelper{
         sqLiteDatabase.close();
     }
 
+    public void UpdateCntSale(String id,int newCntSale) {
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        ContentValues row = new ContentValues();
+        row.put("countSaled",newCntSale);
+        sqLiteDatabase.update("Product",row,"prouductId=?",new String[]{id});
+        sqLiteDatabase.close();
+    }
+
+    public void deleteProduct(String Id){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        sqLiteDatabase.delete("Product","prouductId like ?",new String[]{Id});
+        sqLiteDatabase.close();
+    }
+
+    public void UpdateProduct(product p){
+        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
+        ContentValues c = new ContentValues();
+
+        Bitmap imagetoStore=p.getImage();
+        objByteArrayOutputStream=new ByteArrayOutputStream();
+        imagetoStore.compress(Bitmap.CompressFormat.JPEG,100,objByteArrayOutputStream);
+        ImgInByte=objByteArrayOutputStream.toByteArray();
+        c.put("name",p.getName());
+        c.put("descriotion",p.getDescription());
+        c.put("price",p.getPrice());
+        c.put("quantity",p.getQuantity());
+        c.put("image",ImgInByte);
+
+        sqLiteDatabase.update("Product", c, "prouductId like ?", new String[]{String.valueOf(p.getId())});
+        sqLiteDatabase.close();
+    }
 
 }

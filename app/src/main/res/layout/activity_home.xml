@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsOfProductActivity">
+    tools:context=".home">
 
     <ImageView
-        android:id="@+id/imgDesc"
+        android:id="@+id/imgDesc1"
         android:layout_width="406dp"
         android:layout_height="212dp"
         android:layout_marginEnd="190dp"
@@ -22,47 +22,47 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/NameDesc"
+        android:id="@+id/NameDesc1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="52dp"
         android:text="TextView"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/imgDesc"
-        app:layout_constraintTop_toBottomOf="@+id/imgDesc" />
+        app:layout_constraintStart_toStartOf="@+id/imgDesc1"
+        app:layout_constraintTop_toBottomOf="@+id/imgDesc1" />
 
     <TextView
-        android:id="@+id/priceDesc"
+        android:id="@+id/priceDesc1"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="76dp"
         android:text="TextView"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/NameDesc"
-        app:layout_constraintStart_toEndOf="@+id/NameDesc"
-        app:layout_constraintTop_toTopOf="@+id/NameDesc"
+        app:layout_constraintBottom_toBottomOf="@+id/NameDesc1"
+        app:layout_constraintStart_toEndOf="@+id/NameDesc1"
+        app:layout_constraintTop_toTopOf="@+id/NameDesc1"
         app:layout_constraintVertical_bias="0.0" />
 
 
     <TextView
-        android:id="@+id/Desc"
+        android:id="@+id/Desc1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         android:paddingRight="20dp"
         android:text="TextView"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/priceDesc"
+        app:layout_constraintEnd_toEndOf="@+id/priceDesc1"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/NameDesc"
-        app:layout_constraintTop_toBottomOf="@+id/NameDesc" />
+        app:layout_constraintStart_toStartOf="@+id/NameDesc1"
+        app:layout_constraintTop_toBottomOf="@+id/NameDesc1" />
 
     <Button
         android:id="@+id/p_btn"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Desc"
+        android:layout_below="@+id/Desc1"
         android:layout_alignParentStart="true"
         android:layout_marginStart="76dp"
         android:layout_marginTop="80dp"
@@ -70,31 +70,33 @@
         android:backgroundTint="@color/colorPrimary"
         android:elevation="16dp"
         android:text="+"
-        android:textColor="@android:color/black"
+        android:background="@drawable/buttons"
+        android:textColor="@android:color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Desc"
+        app:layout_constraintTop_toBottomOf="@+id/Desc1"
         app:layout_constraintVertical_bias="0.079" />
 
     <Button
         android:id="@+id/m_btn"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Desc"
+        android:layout_below="@+id/Desc1"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="121dp"
         android:backgroundTint="@color/colorPrimary"
         android:elevation="16dp"
+        android:background="@drawable/buttons"
         android:text="-"
-        android:textColor="@android:color/black"
+        android:textColor="@android:color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.321"
         app:layout_constraintStart_toEndOf="@+id/quantity"
-        app:layout_constraintTop_toBottomOf="@+id/Desc"
+        app:layout_constraintTop_toBottomOf="@+id/Desc1"
         app:layout_constraintVertical_bias="0.034" />
 
     <TextView
@@ -102,7 +104,7 @@
         style="?android:attr/listSeparatorTextViewStyle"
         android:layout_width="57dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Desc"
+        android:layout_below="@+id/Desc1"
         android:layout_marginStart="40dp"
         android:layout_marginTop="96dp"
         android:layout_toStartOf="@+id/m_btn"
@@ -112,15 +114,16 @@
         android:text="1"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/p_btn"
-        app:layout_constraintTop_toBottomOf="@+id/Desc" />
+        app:layout_constraintTop_toBottomOf="@+id/Desc1" />
 
     <Button
         android:id="@+id/totalPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="56dp"
         android:layout_marginTop="64dp"
-        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/buttons"
         android:text="Add To Cart"
+        android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="@+id/m_btn"
         app:layout_constraintStart_toStartOf="@+id/p_btn"

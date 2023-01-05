@@ -6,22 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".CartActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/rl11"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="@color/colorPrimary"
         android:layout_alignParentTop="true">
-
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Cart"
+            android:layout_marginStart="10dp"
             android:textAlignment="center"
             android:textColor="@android:color/white"
-            android:textSize="20dp" />
-    </RelativeLayout>
+            android:textSize="30dp"
+            android:textStyle="bold"/>
+
+        <ImageButton
+            android:id="@+id/Back_p"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/app_name"
+            android:background="@drawable/buttons"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_directions" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cart_list_recyclerView"
@@ -43,6 +63,7 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:text="Total Price: "
+        android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
