@@ -34,7 +34,7 @@ Welcome to the **Shopping App**! This Android application enables merchants to m
 
 ## 🎥 Demo Video  
 
-[![Watch the Video](https://drive.google.com/file/d/1dvn7fBd5oTmumyF4ExEXjJwnUT-m3UDU/view?usp=sharing)] 
+🔗 Click [here](https://drive.google.com/file/d/1dvn7fBd5oTmumyF4ExEXjJwnUT-m3UDU/view?usp=sharing) to watch the full demo.  
 
 
 
